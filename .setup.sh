@@ -21,6 +21,10 @@ packages=(
   cmake
   tmux
   btop
+  eza
+  neovim
+  fish
+  gh
 )
 
 # Iterate over the array and install each package

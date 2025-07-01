@@ -11,6 +11,7 @@ ln -sf "$PWD/.tmux.conf" "$HOME"/.tmux.conf
 ln -sf "$PWD/.config/starship.toml" "$XDG_CONFIG_HOME"/starship.toml
 ln -sf "$PWD/.config/btop.conf" "$XDG_CONFIG_HOME"/btop.conf
 
+
 packages=(
   starship
   lazygit
@@ -25,6 +26,13 @@ packages=(
   neovim
   fish
   gh
+
+  # Kubernetes and Azure Tools
+  kubectl
+  helm
+  azure-cli
+  kubectx
+  kubelogin
 )
 
 # Iterate over the array and install each package

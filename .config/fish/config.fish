@@ -283,15 +283,15 @@ function sphinxb
     docker run --rm -u 1000 -v $(pwd):/sphinxneeds artifactory.boschdevcloud.com/docs-as-code-docker-local/sphinxneeds-toolkit:0.0.9 sphinx-build -b singlehtml $argv[1] $argv[2]
 end
 # set M2_HOME "/opt/apache-maven-3.8.6"
-# set PATH "$PATH:/home/deww/.local/bin/"
-set GOROOT /home/deww/Repos/goroot/
-set GOPATH /home/deww/go/bin/
+# set PATH "$PATH:$HOME/.local/bin/"
+set GOROOT $HOME/Repos/goroot/
+set GOPATH $HOME/go/bin/
 
 ### SETTING THE STARSHIP PROMPT ###
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Added by LM Studio CLI (lms)
-set -gx PATH $PATH /Users/deww/.lmstudio/bin
+# set -gx PATH $PATH $HOME/.lmstudio/bin
 # End of LM Studio CLI section
 

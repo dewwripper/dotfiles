@@ -199,11 +199,11 @@ alias em='/usr/bin/emacs -nw'
 alias emacs="emacsclient -c -a 'emacs'"
 
 # Changing "ls" to "exa"
-alias ls='/opt/homebrew/bin/eza -al --color=always --group-directories-first' # my preferred listing
-alias la='/opt/homebrew/bin/eza -a --color=always --group-directories-first' # all files and dirs
-alias ll='/opt/homebrew/bin/eza -l --color=always --group-directories-first' # long format
-alias lt='/opt/homebrew/bin/eza -aT --color=always --group-directories-first' # tree listing
-alias l.='/opt/homebrew/bin/eza -a | egrep "^\."'
+alias ls='eza -al --color=always --group-directories-first' # my preferred listing
+alias la='eza -a --color=always --group-directories-first' # all files and dirs
+alias ll='eza -l --color=always --group-directories-first' # long format
+alias lt='eza -aT --color=always --group-directories-first' # tree listing
+alias l.='eza -a | egrep "^\."'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -289,7 +289,7 @@ set GOPATH $HOME/go/bin/
 
 ### SETTING THE STARSHIP PROMPT ###
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(brew shellenv)"
 
 # Added by LM Studio CLI (lms)
 # set -gx PATH $PATH $HOME/.lmstudio/bin

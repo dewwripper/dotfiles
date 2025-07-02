@@ -13,26 +13,26 @@ ln -sf "$PWD/.config/btop.conf" "$XDG_CONFIG_HOME"/btop.conf
 
 
 packages=(
-  starship
-  lazygit
+  # starship
+  # lazygit
   fzf
   fd
   ripgrep
-  make
-  cmake
+  # make
+  # cmake
   tmux
   btop
   eza
   neovim
   fish
-  gh
+  # gh
 
   # Kubernetes and Azure Tools
-  kubectl
-  helm
-  azure-cli
-  kubectx
-  kubelogin
+  # kubectl
+  # helm
+  # azure-cli
+  # kubectx
+
 )
 
 # Iterate over the array and install each package

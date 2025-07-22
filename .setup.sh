@@ -22,9 +22,9 @@ packages=(
   # cmake
   tmux
   btop
-  eza
+  # eza
   neovim
-  fish
+  # fish
   # gh
 
   # Kubernetes and Azure Tools

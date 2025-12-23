@@ -72,6 +72,11 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git z zsh-autosuggestions zsh-nvm)
 
+# ==============================================================================
+# QUAN TRỌNG: Dòng này bị thiếu trong file cũ, gây ra lỗi compdef
+source $ZSH/oh-my-zsh.sh
+# ==============================================================================
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -100,7 +105,10 @@ plugins=(git z zsh-autosuggestions zsh-nvm)
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Kubectl completion cần được load SAU KHI 'source $ZSH/oh-my-zsh.sh' chạy
 source <(kubectl completion zsh)
+
 alias k="kubectl"
 alias kgp="k get po "
 alias kgpo="k get po -owide "

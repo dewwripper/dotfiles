@@ -72,8 +72,6 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git z zsh-autosuggestions zsh-nvm)
 
-source $ZSH/oh-my-zsh.sh
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -116,7 +114,6 @@ alias kr="k run --dry-run=client -oyaml --image "
 alias ka="k apply -f "
 alias krep="k replace --force -f "
 export do="--dry-run=client -oyaml "
-complete -o default -F __start_kubectl k
 export REQUESTS_CA_BUNDLE=/usr/share/ca-certificates/azure_cli_cert.pem
 
 alias vim='nvim'

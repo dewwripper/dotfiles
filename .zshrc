@@ -102,9 +102,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias kubectl="/home/linuxbrew/.linuxbrew/bin/kubectl"
 source <(kubectl completion zsh)
-alias k="/home/linuxbrew/.linuxbrew/bin/kubectl"
+alias k="kubectl"
 alias kgp="k get po "
 alias kgpo="k get po -owide "
 alias kgn="k get node "
@@ -122,11 +121,11 @@ export REQUESTS_CA_BUNDLE=/usr/share/ca-certificates/azure_cli_cert.pem
 
 alias vim='nvim'
 # Changing "ls" to "exa"
-alias ls='/home/linuxbrew/.linuxbrew/bin//eza -al --color=always --group-directories-first' # my preferred listing
-alias la='/home/linuxbrew/.linuxbrew/bin//eza -a --color=always --group-directories-first' # all files and dirs
-alias ll='/home/linuxbrew/.linuxbrew/bin//eza -l --color=always --group-directories-first' # long format
-alias lt='/home/linuxbrew/.linuxbrew/bin//eza -aT --color=always --group-directories-first' # tree listing
-alias l.='/home/linuxbrew/.linuxbrew/bin//eza -a | egrep "^\."'
+alias ls='eza -al --color=always --group-directories-first' # my preferred listing
+alias la='eza -a --color=always --group-directories-first' # all files and dirs
+alias ll='eza -l --color=always --group-directories-first' # long format
+alias lt='eza -aT --color=always --group-directories-first' # tree listing
+alias l.='eza -a | egrep "^\."'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -164,4 +163,4 @@ alias dcr="docker compose down && docker compose up -d"
 
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

@@ -4,8 +4,8 @@ export XDG_CONFIG_HOME="$HOME"/.config
 mkdir -p "$XDG_CONFIG_HOME"
 
 # Create symlinks for existing configurations
-ln -sf "$PWD/.bashrc" "$HOME"/.bashrc
-ln -sf "$PWD/.zshrc" "$HOME"/.zshrc
+ln -sf "$PWD/.bashrc" "$XDG_CONFIG_HOME"/.bashrc
+ln -sf "$PWD/.zshrc" "$XDG_CONFIG_HOME"/.zshrc
 ln -sf "$PWD/.config/nvim" "$XDG_CONFIG_HOME"/nvim
 ln -sf "$PWD/.config/fish" "$XDG_CONFIG_HOME"/fish
 ln -sf "$PWD/.config/tmux" "$XDG_CONFIG_HOME"/tmux

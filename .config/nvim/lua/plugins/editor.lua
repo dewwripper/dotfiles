@@ -4,6 +4,7 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-telescope/telescope-file-browser.nvim",
+      -- THÊM: Cần có plugin này để load_extension("fzf") hoạt động
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     keys = {
@@ -104,7 +105,10 @@ return {
       local telescope = require("telescope")
       local actions = require("telescope.actions")
       
+      -- SỬA: Dùng đường dẫn nội bộ (_extensions) để lấy actions mà không cần load extension trước
       local fb_actions = require("telescope._extensions.file_browser.actions")
+
+      -- An toàn: Đảm bảo opts là table
       opts = opts or {}
       opts.defaults = opts.defaults or {}
 

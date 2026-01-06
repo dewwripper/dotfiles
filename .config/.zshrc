@@ -102,9 +102,24 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias kubectl="/home/linuxbrew/.linuxbrew/bin/kubectl"
-source <(kubectl completion zsh)
-alias k="/home/linuxbrew/.linuxbrew/bin/kubectl"
+
+# Initialize Homebrew environment (prioritize user installation)
+if [ -d "$HOME/.linuxbrew" ]; then
+  eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+elif [ -d "/home/linuxbrew/.linuxbrew" ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+elif [ -d "/opt/homebrew" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -d "/usr/local/Homebrew" ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+# Setup kubectl completion if kubectl is available
+if command -v kubectl &> /dev/null; then
+  source <(kubectl completion zsh)
+fi
+
+alias k="kubectl"
 alias kgp="k get po "
 alias kgpo="k get po -owide "
 alias kgn="k get node "
@@ -121,12 +136,12 @@ complete -o default -F __start_kubectl k
 export REQUESTS_CA_BUNDLE=/usr/share/ca-certificates/azure_cli_cert.pem
 
 alias vim='nvim'
-# Changing "ls" to "exa"
-alias ls='/home/linuxbrew/.linuxbrew/bin//eza -al --color=always --group-directories-first' # my preferred listing
-alias la='/home/linuxbrew/.linuxbrew/bin//eza -a --color=always --group-directories-first' # all files and dirs
-alias ll='/home/linuxbrew/.linuxbrew/bin//eza -l --color=always --group-directories-first' # long format
-alias lt='/home/linuxbrew/.linuxbrew/bin//eza -aT --color=always --group-directories-first' # tree listing
-alias l.='/home/linuxbrew/.linuxbrew/bin//eza -a | egrep "^\."'
+# Changing "ls" to "eza"
+alias ls='eza -al --color=always --group-directories-first' # my preferred listing
+alias la='eza -a --color=always --group-directories-first' # all files and dirs
+alias ll='eza -l --color=always --group-directories-first' # long format
+alias lt='eza -aT --color=always --group-directories-first' # tree listing
+alias l.='eza -a | egrep "^\."'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -163,5 +178,3 @@ alias dcb="docker compose build"
 alias dcr="docker compose down && docker compose up -d"
 
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

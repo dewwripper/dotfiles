@@ -106,8 +106,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Kubectl completion cần được load SAU KHI 'source $ZSH/oh-my-zsh.sh' chạy
-source <(kubectl completion zsh)
+# Setup kubectl completion if kubectl is available
+# Kubectl completion must be loaded AFTER 'source $ZSH/oh-my-zsh.sh' runs
+if command -v kubectl &> /dev/null; then
+  source <(kubectl completion zsh)
+fi
 
 alias k="kubectl"
 alias kgp="k get po "
@@ -168,4 +171,13 @@ alias dcr="docker compose down && docker compose up -d"
 
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# Initialize Homebrew environment (prioritize user installation)
+if [ -d "$HOME/.linuxbrew" ]; then
+  eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+elif [ -d "/home/linuxbrew/.linuxbrew" ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+elif [ -d "/opt/homebrew" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -d "/usr/local/Homebrew" ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi

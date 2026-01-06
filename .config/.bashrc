@@ -73,3 +73,14 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Initialize Homebrew environment
+if [ -d "$HOME/.linuxbrew" ]; then
+  eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+elif [ -d "/home/linuxbrew/.linuxbrew" ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+elif [ -d "/opt/homebrew" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -d "/usr/local/Homebrew" ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi

@@ -168,4 +168,13 @@ alias dcr="docker compose down && docker compose up -d"
 
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# Initialize Homebrew environment (prioritize user installation)
+if [ -d "$HOME/.linuxbrew" ]; then
+  eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+elif [ -d "/home/linuxbrew/.linuxbrew" ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+elif [ -d "/opt/homebrew" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -d "/usr/local/Homebrew" ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi

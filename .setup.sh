@@ -13,6 +13,22 @@ ln -sf "$PWD/.tmux.conf" "$HOME"/.tmux.conf
 ln -sf "$PWD/.config/starship.toml" "$XDG_CONFIG_HOME"/starship.toml
 ln -sf "$PWD/.config/btop.conf" "$XDG_CONFIG_HOME"/btop.conf
 
+# Install Homebrew if not already installed
+if ! command -v brew &> /dev/null; then
+  echo "Homebrew not found. Installing..."
+  bash "$PWD/.install-homebrew.sh"
+  
+  # Initialize Homebrew in current shell
+  if [ -d "$HOME/.linuxbrew" ]; then
+    eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+  elif [ -d "/home/linuxbrew/.linuxbrew" ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  elif [ -d "/opt/homebrew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [ -d "/usr/local/Homebrew" ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
+fi
 
 packages=(
   starship
@@ -40,5 +56,5 @@ packages=(
 # Iterate over the array and install each package
 for package in "${packages[@]}"; do
   echo "Installing $package..."
-  /home/linuxbrew/.linuxbrew/bin/brew install "$package"
+  brew install "$package"
 done

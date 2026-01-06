@@ -114,7 +114,11 @@ elif [ -d "/usr/local/Homebrew" ]; then
   eval "$(/usr/local/bin/brew shellenv)"
 fi
 
-source <(kubectl completion zsh)
+# Setup kubectl completion if kubectl is available
+if command -v kubectl &> /dev/null; then
+  source <(kubectl completion zsh)
+fi
+
 alias k="kubectl"
 alias kgp="k get po "
 alias kgpo="k get po -owide "

@@ -106,8 +106,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Kubectl completion cần được load SAU KHI 'source $ZSH/oh-my-zsh.sh' chạy
-source <(kubectl completion zsh)
+# Setup kubectl completion if kubectl is available
+# Kubectl completion must be loaded AFTER 'source $ZSH/oh-my-zsh.sh' runs
+if command -v kubectl &> /dev/null; then
+  source <(kubectl completion zsh)
+fi
 
 alias k="kubectl"
 alias kgp="k get po "

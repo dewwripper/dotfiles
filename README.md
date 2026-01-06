@@ -68,7 +68,7 @@ The shell configurations (`.bashrc` and `.zshrc`) will automatically detect and 
 
 ## Included Tools
 
-- **Shell**: fish, zsh configurations with Oh My Zsh
+- **Shell**: fish, zsh configurations with Oh My Zsh (includes zsh-autosuggestions and zsh-nvm plugins)
 - **Editor**: Neovim with custom configuration
 - **Terminal Multiplexer**: tmux
 - **CLI Tools**: starship (prompt), eza (ls replacement), fzf, fd, ripgrep

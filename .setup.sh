@@ -36,20 +36,16 @@ packages=(
   fzf
   fd
   ripgrep
-  # make
-  # cmake
   tmux
   btop
   eza
   neovim
-  fish
+  zsh
   gh
 
   # Kubernetes and Azure Tools
   kubectl
   helm
-  # azure-cli
-  # kubectx
 
 )
 

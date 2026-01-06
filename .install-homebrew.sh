@@ -35,6 +35,16 @@ fi
 echo "Installing Homebrew to $HOMEBREW_PREFIX..."
 
 # Download and run the official Homebrew installation script
+# This uses the official installation method from https://brew.sh
+# The script is downloaded from GitHub's Homebrew/install repository
+# 
+# Security note: While downloading and executing scripts from the internet
+# should generally be done with caution, this is the official and recommended
+# installation method for Homebrew. The NONINTERACTIVE flag ensures no user
+# input is required during installation.
+#
+# To review the installation script before running, visit:
+# https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Verify installation

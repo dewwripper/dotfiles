@@ -125,7 +125,7 @@ alias kr="k run --dry-run=client -oyaml --image "
 alias ka="k apply -f "
 alias krep="k replace --force -f "
 export do="--dry-run=client -oyaml "
-export REQUESTS_CA_BUNDLE=/usr/share/ca-certificates/azure_cli_cert.pem
+export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
 alias vim='nvim'
 # Changing "ls" to "exa"

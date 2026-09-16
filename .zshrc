@@ -129,6 +129,8 @@ alias kn="kubectl config set-context --current --namespace "
 alias kr="k run --dry-run=client -oyaml --image "
 alias ka="k apply -f "
 alias krep="k replace --force -f "
+alias kgpon="k get po -owide -n "
+alias kg="k get "
 export do="--dry-run=client -oyaml "
 export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
@@ -167,6 +169,15 @@ alias trp="terraform plan"
 alias trv="terraform validate"
 alias tra="terraform apply --auto-approve"
 alias trd="terraform apply -destroy --auto-approve"
+
+# terragrunt
+alias tg="terragrunt"
+
+alias tgi="tg init"
+alias tgp="tg plan"
+alias tgv="tg validate"
+alias tga="tg apply --auto-approve"
+alias tgd="tg apply -destroy --auto-approve"
 
 # docker
 alias dcd="docker compose down"

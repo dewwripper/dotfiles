@@ -78,7 +78,6 @@ if [[ -f /etc/alpine-release ]] || [[ -f /etc/os-release && "$(< /etc/os-release
   plugins=(${plugins:#zsh-nvm})
 fi
 # ==============================================================================
-# QUAN TRỌNG: Dòng này bị thiếu trong file cũ, gây ra lỗi compdef
 source $ZSH/oh-my-zsh.sh
 # ==============================================================================
 
@@ -110,6 +109,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=241'
 
 # Setup kubectl completion if kubectl is available
 # Kubectl completion must be loaded AFTER 'source $ZSH/oh-my-zsh.sh' runs

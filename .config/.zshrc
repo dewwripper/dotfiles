@@ -73,6 +73,10 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git z zsh-autosuggestions zsh-nvm)
 
+# Remove zsh-nvm on Alpine Linux (musl libc is incompatible with standard nvm precompiled binaries)
+if [[ -f /etc/alpine-release ]] || [[ -f /etc/os-release && "$(< /etc/os-release)" == *ID=alpine* ]]; then
+  plugins=(${plugins:#zsh-nvm})
+fi
 source $ZSH/oh-my-zsh.sh
 
 # User configuration

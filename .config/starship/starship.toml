@@ -1,62 +1,109 @@
-add_newline = false
-# A minimal left prompt
-format = """$directory$character"""
-palette = "catppuccin_mocha"
-# move the rest of the prompt to the right
-right_format = """$all"""
-command_timeout = 1000
+# Get editor completions based on the config schema
+# "$schema" = 'https://starship.rs/config-schema.json'
 
-[directory.substitutions]
-'~/tests/starship-custom' = 'work-project'
+# Inserts a blank line between shell prompts
+add_newline = true
 
-[git_branch]
-format =  '[$symbol$branch(:$remote_branch)]($style)'
+[character]                            # The name of the module we are configuring is "character"
+success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol   = "[✗](bold red) "
 
-[aws]
-format = '[$symbol(profile: "$profile" )(\(region: $region\) )]($style)'
-disabled = false
-style = 'bold blue'
-symbol = " "
-
-[golang]
-format = '[ ](bold cyan)'
-
-[kubernetes]
-symbol = '☸ '
-disabled = false
-detect_files = ['Dockerfile']
-format = '[$symbol$context( \($namespace\))]($style) '
-contexts = [
-  { context_pattern = "arn:aws:eks:us-west-2:577926974532:cluster/zd-pvc-omer", style = "green", context_alias = "omerxx", symbol = " " },
-]
-
-[docker_context]
+# Disable the package module, hiding it from the prompt completely
+[package]
 disabled = true
 
-[palettes.catppuccin_mocha]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-mauve = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
+[env_var.ENV]
+variable = 'ENV'
+default = ''
+style = "bold red"
+format = "🎯 [$env_value]($style) "
+
+[aws]
+format = 'on [$symbol$profile(\($region\))]($style) '
+style = "bold blue"
+
+[gcloud]
+disabled = true
+
+[git_branch]
+symbol = '🌱 '
+truncation_symbol = ""
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = "🔖"
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = '[🍒 PICKING](bold red)'
+
+[git_metrics]
+added_style = 'bold blue'
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+
+[hostname]
+ssh_only = true
+format =  "on [$hostname](bold red) "
+disabled = false
+
+[nodejs]
+format = 'via [🤖 $version](bold green) '
+
+[terraform]
+disabled = false
+format = '[$version]($style) '
+
+[kubernetes]
+disabled = false
+
+[[kubernetes.contexts]]
+context_pattern = ".*cluster/(?P<cluster>(.*prod.*)+)"
+style = "bold red"
+context_alias = "$cluster"
+
+[[kubernetes.contexts]]
+context_pattern = "teleport\\..*?-(?P<cluster>.*prod.*)+"
+style = "bold red"
+context_alias = "[T].$cluster"
+
+
+[[kubernetes.contexts]]
+context_pattern = ".*cluster/(?P<cluster>[\\w-]+)"
+style = "bold blue"
+context_alias = "$cluster"
+
+[[kubernetes.contexts]]
+context_pattern = "teleport\\..*?-(?P<cluster>.*)"
+style = "bold blue"
+context_alias = "[T].$cluster"
+
+[custom.direnv]
+format = "[\\[direnv\\]]($style) "
+style = "fg:yellow dimmed"
+when = "env | grep -E '^DIRENV_FILE='"
+
+[custom.aws_session]
+command = '''
+expiration_time=$(date -d "$AWS_CREDENTIAL_EXPIRATION" +%s)
+current_time=$(date +%s)
+time_left=$((expiration_time - current_time))
+
+if [[ $time_left -gt 0 ]]; then
+    hours_left=$((time_left / 3600))
+    minutes_left=$(((time_left % 3600) / 60))
+
+    if [[ $hours_left -gt 0 ]]; then
+        time_display="${hours_left}h ${minutes_left}m"
+    else
+        time_display="${minutes_left}m"
+    fi
+
+    # show a warning if there are less than 15 minutes left
+    if [[ $time_left -lt 900 ]]; then
+        echo -e "⚠️\e[31m $time_display left\e[0m"
+    else
+        echo -e "⌛\e[33;32m $time_display left\e[0m"
+    fi
+fi
+'''
+when = '[ -n "$AWS_CREDENTIAL_EXPIRATION" ]'

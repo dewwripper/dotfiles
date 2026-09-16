@@ -7,8 +7,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
+# Set name of the theme to load --- set to "" when using external prompts like Starship
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="amuse"
+ZSH_THEME=""
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -180,4 +181,12 @@ elif [ -d "/opt/homebrew" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [ -d "/usr/local/Homebrew" ]; then
   eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+# Starship prompt configuration
+export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml"
+
+# Initialize Starship prompt
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
 fi

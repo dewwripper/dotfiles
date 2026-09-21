@@ -112,6 +112,13 @@ source $ZSH/oh-my-zsh.sh
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=241'
 
+# Fix term issue
+case "$TERM" in
+  xterm-ghostty|xterm-kitty|alacritty)
+    infocmp "$TERM" &>/dev/null || export TERM=xterm-256color
+    ;;
+esac
+
 # Setup kubectl completion if kubectl is available
 # Kubectl completion must be loaded AFTER 'source $ZSH/oh-my-zsh.sh' runs
 if command -v kubectl &> /dev/null; then

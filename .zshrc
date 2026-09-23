@@ -139,7 +139,7 @@ alias ka="k apply -f "
 alias krep="k replace --force -f "
 alias kgpon="k get po -owide -n "
 alias kg="k get "
-export do="--dry-run=client -oyaml "
+do=(--dry-run=client -o yaml)
 export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
 alias vim='nvim'

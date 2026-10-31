@@ -104,7 +104,7 @@ return {
     config = function(_, opts)
       local telescope = require("telescope")
       local actions = require("telescope.actions")
-      
+
       -- SỬA: Dùng đường dẫn nội bộ (_extensions) để lấy actions mà không cần load extension trước
       local fb_actions = require("telescope._extensions.file_browser.actions")
 
